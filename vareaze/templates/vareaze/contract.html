@@ -7,6 +7,12 @@
 </head>
 <body>
 	<p>
+		{% for account in account_list %}
+		{{ account.vareaze_id }}
+		{% empty %}
+		{% endfor%}
+	</p>
+	<p>
 		<form action="{% url 'vareaze:initiate' user.id %}" method="post">
 			{% csrf_token %}
 			{{ form.as_p }}

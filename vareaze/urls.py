@@ -9,4 +9,5 @@ urlpatterns = [
 	# Home page
 	path('', views.home, name='home'),
 	path('contract/<int:user_id>/', views.initiate, name='initiate'),
+	path('profile/<int:user_id>/', views.profile, name='profile'),
 ]

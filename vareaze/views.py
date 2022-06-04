@@ -17,6 +17,7 @@ def initiate(request, user_id):
 	contracts = Contract.objects.all()
 	user_vareaze_id = request.user.vareaze_id
 	user = Account.objects.get(id=user_id)
+	account_list = Account.objects.all()
 	if request.method != 'POST':
 		# No data submitted; create a blank form.
 		form = ContractForm()
@@ -25,12 +26,15 @@ def initiate(request, user_id):
 		if form.is_valid():
 			if request.POST.get('vareaze_id') == user_vareaze_id:
 				contract = form.save(commit=False)
-				print(contract)
 				contract.user = user
 				contract.save()
 				return redirect('vareaze:home')
 		else:
-			print(type(request.POST.get('vareaze_id')), type(user_vareaze_id))
 			return redirect('vareaze:initiate', user_id)
-	context = {'contracts':contracts, 'user':user, 'form':form}
+	context = {'contracts':contracts, 'user':user, 'form':form, 'account_list':account_list}
 	return render(request, 'vareaze/contract.html', context)
+
+def profile(request, user_id):
+	user = Account.objects.get(id=user_id)
+	context = {'user':user}
+	return render(request, 'vareaze/profile.html', context)
