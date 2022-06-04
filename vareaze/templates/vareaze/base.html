@@ -1,0 +1,14 @@
+
+<p>
+	{% if not request.user.is_authenticated %}
+		<a href="{% url 'vareaze:home' %}">Home</a>
+		<a href="{% url 'account:register' %}">Register</a>
+		<a href="{% url 'account:authenticate_user' %}">Login</a>
+	{% else %}
+		<a href="{% url 'vareaze:home' %}">Home</a>
+		<a href="{% url 'vareaze:initiate' user.id %}">Contracts</a>
+		<a href="{% url 'account:logged_out' %}">Log out</a>	
+	{% endif %}
+</p>
+
+{% block content %}{% endblock content %}

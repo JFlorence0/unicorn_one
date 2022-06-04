@@ -1,0 +1,21 @@
+{% extends 'vareaze/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contracts</title>
+</head>
+<body>
+	<p>
+		<form action="{% url 'vareaze:initiate' user.id %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" name="sign" value="sign">Initiate Request</button>
+
+			
+		</form>
+			
+	</p>
+</body>
+{% endblock content %}
+</html>

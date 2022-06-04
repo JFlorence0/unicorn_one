@@ -1,0 +1,23 @@
+{% extends 'vareaze/base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<p>Making lending easier.</p>
+	{% for account in accounts %}
+		{{ account.username }}<br>
+	
+	{% empty %}
+	{% endfor %}
+	{% if user.is_authenticated %}
+		<p>Hello, {{ user.vareaze_id }}</p>
+	{% else %}
+		<p>Not Logged in</p>
+	{% endif %}
+	{{ user.id }}
+</body>
+{% endblock content %}
+</html>
