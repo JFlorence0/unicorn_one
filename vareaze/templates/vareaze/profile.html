@@ -8,7 +8,16 @@
 	<title>{{ user.first_name }} {{ user.last_name }}</title>
 </head>
 <body>
+	<p>{{ user.first_name }} {{ user.last_name }}<br><br>
+		{% for contract in contracts %}
+			{% if contract.owner.email == request.user.email %}
+				{{ contract }}<br>
+				{% else %}
+			{% endif %}
+		{% empty %}
+		{% endfor %}
 
+	</p>
 </body>
 {% endblock content %}
 </html>

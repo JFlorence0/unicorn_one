@@ -27,11 +27,8 @@ def initiate(request, user_id):
 		if form.is_valid():
 			if request.POST.get('vareaze_id') == user_vareaze_id:
 				contract = form.save(commit=False)
-				print(contract)
 				contract.owner = owner
-				print(contract.owner)
 				contract.save()
-				print(contract)
 				return redirect('vareaze:home')
 			else:
 				return "Invalid Pin"
@@ -42,5 +39,14 @@ def initiate(request, user_id):
 
 def profile(request, user_id):
 	user = Account.objects.get(id=user_id)
-	context = {'user':user}
+	contracts = Contract.objects.all()
+	context = {'user':user, 'contracts': contracts}
 	return render(request, 'vareaze/profile.html', context)
+
+
+
+
+
+
+
+
